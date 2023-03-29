@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mobile">
-   <application
+    package="dev.akifkadioglu.diaryapp">
+       <uses-permission android:name="android.permission.INTERNET" />
+    <application
         android:label="mobile"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
@@ -30,5 +31,9 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+            <meta-data
+                android:name="com.google.android.gms.ads.APPLICATION_ID"
+                android:value="ca-app-pub-3543901658351927~3499181098"/>
     </application>
 </manifest>
