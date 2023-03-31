@@ -3,13 +3,14 @@ import 'package:get/get.dart';
 import 'package:mobile/core/base/state.dart';
 import 'package:mobile/core/base/view.dart';
 import 'package:mobile/core/component/app_button.dart';
-import 'package:mobile/core/component/app_text_field.dart';
-import 'package:mobile/core/component/app_textarea.dart';
+import 'package:mobile/core/constants/card_constants.dart';
+import 'package:mobile/core/constants/text_field_constants.dart';
 import 'package:mobile/core/localization/keys.dart';
 import 'package:mobile/core/routes/go_route.dart';
 import 'package:mobile/core/routes/route_names.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:mobile/views/home/service.dart';
+import 'package:mobile/views/home/view_controller.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -25,8 +26,7 @@ class _HomeViewState extends BaseState<HomeView> {
     super.initState();
   }
 
-  double _userRating = 3.0;
-
+  HomeViewController c = Get.put(HomeViewController());
   @override
   Widget build(BuildContext context) {
     return BaseView(
@@ -57,21 +57,33 @@ class _HomeViewState extends BaseState<HomeView> {
               color: context.theme.canvasColor,
               elevation: 0,
               margin: const EdgeInsets.all(10),
-              shape: RoundedRectangleBorder(
-                borderRadius: const BorderRadius.all(Radius.circular(5)),
-                side: BorderSide(
-                  color: context.theme.disabledColor,
-                  width: 0.5,
-                ),
-              ),
+              shape: CardConstant().shape(context.theme.disabledColor),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    const AppTextField(textKey: IKey.HEADER),
-                    const AppTextArea(textKey: IKey.BODY),
+                    TextField(
+                      maxLength: 255,
+                      textCapitalization: TextCapitalization.sentences,
+                      decoration: TextFieldConstant.decoration(textKey: IKey.HEADER),
+                      controller: c.header.value,
+                    ),
+                    TextFormField(
+                      maxLength: 2500,
+                      maxLines: 6,
+                      textCapitalization: TextCapitalization.sentences,
+                      decoration: TextFieldConstant.decoration(textKey: IKey.BODY),
+                      controller: c.body.value,
+                    ),
                     rateBar(),
-                    AppButton(textKey: IKey.SEND, func: deneme),
+                    Obx(
+                      () => AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 150),
+                        child: !c.isLoading.value
+                            ? const AppButton(textKey: IKey.CREATE, func: create)
+                            : const AppButtonLoading(),
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -97,8 +109,9 @@ class _HomeViewState extends BaseState<HomeView> {
         allowHalfRating: true,
         unratedColor: Colors.amber.withAlpha(50),
         direction: Axis.horizontal,
+        updateOnDrag: true,
         onRatingUpdate: (double value) {
-          _userRating = value;
+          c.rate.value = value;
         },
       ),
     );

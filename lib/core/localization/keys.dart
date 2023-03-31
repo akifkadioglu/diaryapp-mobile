@@ -10,4 +10,5 @@ class IKey {
   static const String CHANGE_THEME = '8';
   static const String EMAIL = '9';
   static const String PASSWORD = '10';
+  static const String CREATE = '11';
 }

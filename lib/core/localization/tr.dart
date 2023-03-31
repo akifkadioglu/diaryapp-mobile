@@ -13,5 +13,6 @@ class Turkish {
         IKey.CHANGE_THEME: 'Temayı Değiştir',
         IKey.EMAIL: 'E-Posta',
         IKey.PASSWORD: 'Şifre',
+        IKey.CREATE: 'Oluştur',
       };
 }

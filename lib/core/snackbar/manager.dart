@@ -5,7 +5,7 @@ class SnackbarManager {
     return Get.showSnackbar(
       GetSnackBar(
         title: title,
-        message: message,
+        message: message ?? '',
         duration: Duration(seconds: 3),
       ),
     );

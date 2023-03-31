@@ -13,5 +13,6 @@ class English {
         IKey.CHANGE_THEME: 'Change theme',
         IKey.EMAIL: 'E-Mail',
         IKey.PASSWORD: 'Password',
+        IKey.CREATE: 'Create',
       };
 }
