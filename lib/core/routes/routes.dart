@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile/core/routes/route_names.dart';
+import 'package:mobile/views/auth/is_auth.dart';
 import 'package:mobile/views/auth/login/view.dart';
 import 'package:mobile/views/auth/register/view.dart';
 import 'package:mobile/views/diary/view.dart';
@@ -22,6 +23,10 @@ get appRoutes => [
       buildRoute(
         RouteName.REGISTER,
         const RegisterView(),
+      ),
+      buildRoute(
+        RouteName.IS_AUTH,
+        const IsAuthView(),
       ),
 
       //Home

@@ -21,13 +21,13 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       onGenerateTitle: (BuildContext context) => IKey.APP_NAME.tr,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(colorScheme: lightColorScheme),
+      darkTheme: ThemeData(colorScheme: darkColorScheme),
       themeMode: ThemeMode.light,
       supportedLocales: const [
         Languages.ENGLISH,
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      initialRoute: RouteName.HOME,
+      initialRoute: RouteName.IS_AUTH,
       getPages: appRoutes,
       unknownRoute: unknownRoute,
     );

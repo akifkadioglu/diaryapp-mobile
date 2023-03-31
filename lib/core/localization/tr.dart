@@ -6,6 +6,12 @@ class Turkish {
         IKey.LOGOUT: 'Çıkış Yap',
         IKey.CLOSE: 'Kapat',
         IKey.CHANGE_LANG: 'Dili değiştir',
-        IKey.SETTINGS: 'Ayarlar'
+        IKey.SETTINGS: 'Ayarlar',
+        IKey.BODY: 'İçerik',
+        IKey.HEADER: 'Başlık',
+        IKey.SEND: 'Gönder',
+        IKey.CHANGE_THEME: 'Temayı Değiştir',
+        IKey.EMAIL: 'E-Posta',
+        IKey.PASSWORD: 'Şifre',
       };
 }

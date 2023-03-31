@@ -32,6 +32,14 @@ class _SettingViewState extends State<SettingView> {
             },
           ),
           ListTile(
+            title: Text(IKey.CHANGE_THEME.tr),
+            onTap: () {
+              Get.changeThemeMode(
+                Get.isDarkMode ? ThemeMode.light : ThemeMode.dark,
+              );
+            },
+          ),
+          ListTile(
             title: Text(
               IKey.LOGOUT.tr,
               style: TextStyle(color: context.theme.colorScheme.error),

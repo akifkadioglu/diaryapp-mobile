@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile/core/base/state.dart';
 import 'package:mobile/core/base/view.dart';
+import 'package:mobile/core/component/app_button.dart';
+import 'package:mobile/core/component/app_text_field.dart';
 import 'package:mobile/core/localization/keys.dart';
-import 'package:mobile/core/routes/go_route.dart';
-import 'package:mobile/core/routes/route_names.dart';
+import 'package:mobile/views/auth/login/service.dart';
+
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -21,9 +23,19 @@ class _LoginViewState extends BaseState<LoginView> {
         return Scaffold(
           appBar: AppBar(
             title: Text(IKey.APP_NAME.tr),
+            elevation: 0,
           ),
-          body: Center(
-            child: Text("login"),
+          body: SingleChildScrollView(
+            child: Column(
+              children: const [
+                AppTextField(textKey: IKey.EMAIL),
+                AppTextField(textKey: IKey.PASSWORD),
+                AppButton(
+                  func: login,
+                  textKey: IKey.SEND,
+                ),
+              ],
+            ),
           ),
         );
       },

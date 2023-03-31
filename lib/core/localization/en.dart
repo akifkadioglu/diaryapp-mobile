@@ -6,6 +6,12 @@ class English {
         IKey.LOGOUT: 'Log Out',
         IKey.CLOSE: 'Close',
         IKey.CHANGE_LANG: 'Change language',
-        IKey.SETTINGS: 'Settings'
+        IKey.SETTINGS: 'Settings',
+        IKey.BODY: 'Body',
+        IKey.HEADER: 'Header',
+        IKey.SEND: 'Send',
+        IKey.CHANGE_THEME: 'Change theme',
+        IKey.EMAIL: 'E-Mail',
+        IKey.PASSWORD: 'Password',
       };
 }
