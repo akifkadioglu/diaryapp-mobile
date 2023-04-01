@@ -12,6 +12,7 @@ class AppButton extends StatelessWidget {
         Expanded(
           child: FilledButton(
             onPressed: () {
+              FocusScope.of(context).unfocus();
               func.call();
             },
             child: Text(
@@ -26,7 +27,6 @@ class AppButton extends StatelessWidget {
     );
   }
 }
-
 
 class AppButtonLoading extends StatelessWidget {
   const AppButtonLoading({super.key});

@@ -53,39 +53,36 @@ class _HomeViewState extends BaseState<HomeView> {
             ],
           ),
           body: SingleChildScrollView(
-            child: Card(
-              color: context.theme.canvasColor,
-              elevation: 0,
-              margin: const EdgeInsets.all(10),
-              shape: CardConstant().shape(context.theme.disabledColor),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    TextField(
-                      maxLength: 255,
-                      textCapitalization: TextCapitalization.sentences,
-                      decoration: TextFieldConstant.decoration(textKey: IKey.HEADER),
-                      controller: c.header.value,
+            physics: const BouncingScrollPhysics(),
+            child: Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Wrap(
+                runSpacing: 20,
+                alignment: WrapAlignment.center,
+                children: [
+                  TextField(
+                    maxLength: 255,
+                    textCapitalization: TextCapitalization.sentences,
+                    decoration: TextFieldConstant.decoration(textKey: IKey.HEADER),
+                    controller: c.header.value,
+                  ),
+                  TextFormField(
+                    maxLength: 2500,
+                    maxLines: 6,
+                    textCapitalization: TextCapitalization.sentences,
+                    decoration: TextFieldConstant.decoration(textKey: IKey.BODY),
+                    controller: c.body.value,
+                  ),
+                  rateBar(),
+                  Obx(
+                    () => AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 150),
+                      child: !c.isLoading.value
+                          ? const AppButton(textKey: IKey.CREATE, func: create)
+                          : const AppButtonLoading(),
                     ),
-                    TextFormField(
-                      maxLength: 2500,
-                      maxLines: 6,
-                      textCapitalization: TextCapitalization.sentences,
-                      decoration: TextFieldConstant.decoration(textKey: IKey.BODY),
-                      controller: c.body.value,
-                    ),
-                    rateBar(),
-                    Obx(
-                      () => AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 150),
-                        child: !c.isLoading.value
-                            ? const AppButton(textKey: IKey.CREATE, func: create)
-                            : const AppButtonLoading(),
-                      ),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
             ),
           ),

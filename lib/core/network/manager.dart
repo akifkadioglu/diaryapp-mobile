@@ -21,7 +21,7 @@ class NetworkManager {
   }
 
   Future<NetworkModel> fetchData(String method, String url,
-      {Map<String, String>? params, Map<String, dynamic>? body}) async {
+      {Map<String, dynamic>? query, Map<String, dynamic>? body}) async {
     bool isConnect = await InternetConnectionChecker().hasConnection;
     String result = "";
     num statusCode = 0;
@@ -32,16 +32,16 @@ class NetworkManager {
       return networkModelFromJson(jsonEncode({"result": result, "statusCode": statusCode}));
     }
     try {
-      var request = http.Request(method, Uri.parse(url));
+      var request = http.Request(
+        method,
+        Uri.parse(url).replace(queryParameters: query),
+      );
 
       NetworkConstant().headers.forEach((key, value) {
         request.headers[key] = value;
       });
       if (body != null) {
         request.body = jsonEncode(body);
-      }
-      if (params != null) {
-        request.url.queryParameters.addAll(params);
       }
 
       var response = await http.Client().send(request);
@@ -58,11 +58,15 @@ class NetworkManager {
           var err = await response.stream.bytesToString();
           SnackbarManager.show(message: badRequestModelFromJson(err).data.first);
           break;
+        case HttpStatus.internalServerError:
+          var err = await response.stream.bytesToString();
+          SnackbarManager.show(message: badRequestModelFromJson(err).data.first);
+          break;
         default:
           SnackbarManager.show(message: result);
       }
     } catch (e) {
-      SnackbarManager.show(message: e.toString());
+      print(e);
     }
     return networkModelFromJson(jsonEncode({"result": result, "statusCode": statusCode}));
   }

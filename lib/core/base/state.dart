@@ -8,24 +8,24 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
   double dynamicWidth(double value) => MediaQuery.of(context).size.width * value;
 
   InterstitialAd? _interstitialAd;
-  BannerAd? _bannerAd;
+  BannerAd? bannerAd;
 
   void loadBannerAd() {
-    _bannerAd = BannerAd(
+    bannerAd = BannerAd(
       size: AdSize.fullBanner,
       adUnitId: AdMobService.bannerAdUnitID!,
       listener: AdMobService.bannerListener,
       request: const AdRequest(),
     );
-    _bannerAd?.load();
+    bannerAd?.load();
   }
 
   Widget bannerAdWidget() {
-    return _bannerAd == null
-        ? Container()
-        : Container(
-            height: (_bannerAd?.size.height ?? 0) * 1,
-            child: AdWidget(ad: _bannerAd!),
+    return bannerAd == null
+        ? const SizedBox()
+        : SizedBox(
+            height: (bannerAd?.size.height ?? 0) * 1,
+            child: AdWidget(ad: bannerAd!),
           );
   }
 

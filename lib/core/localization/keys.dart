@@ -11,4 +11,13 @@ class IKey {
   static const String EMAIL = '9';
   static const String PASSWORD = '10';
   static const String CREATE = '11';
+  static const String LOGIN = '12';
+  static const String REGISTER = '13';
+  static const String NAME = '14';
+  static const String DONT_HAVE_AN_ACCOUNT = '15';
+  static const String SHARE_TEXT = '16';
+  static const String ARE_YOU_SURE = '17';
+  static const String DELETE = '18';
+  static const String CANCEL = '19';
+  static const String ARE_YOU_SURE_LONG = '20';
 }
