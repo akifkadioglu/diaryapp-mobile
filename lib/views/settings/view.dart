@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mobile/core/localization/keys.dart';
 import 'package:mobile/core/localization/languages.dart';
+import 'package:mobile/core/localization/translate.dart';
 import 'package:mobile/core/routes/go_route.dart';
 import 'package:mobile/core/routes/route_names.dart';
 import 'package:mobile/core/storage/manager.dart';
@@ -18,13 +19,13 @@ class _SettingViewState extends State<SettingView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(IKey.SETTINGS.tr),
+        title: Text(translate(IKey.SETTINGS)),
         elevation: 0,
       ),
       body: ListView(
         children: [
           ListTile(
-            title: Text(IKey.CHANGE_LANG.tr),
+            title: Text(translate(IKey.CHANGE_LANG)),
             onTap: () {
               Get.locale?.languageCode == Languages.TURKISH.languageCode
                   ? Get.updateLocale(Languages.ENGLISH)
@@ -32,7 +33,7 @@ class _SettingViewState extends State<SettingView> {
             },
           ),
           ListTile(
-            title: Text(IKey.CHANGE_THEME.tr),
+            title: Text(translate(IKey.CHANGE_THEME)),
             onTap: () {
               Get.changeThemeMode(
                 Get.isDarkMode ? ThemeMode.light : ThemeMode.dark,
@@ -41,7 +42,7 @@ class _SettingViewState extends State<SettingView> {
           ),
           ListTile(
             title: Text(
-              IKey.LOGOUT.tr,
+              translate(IKey.LOGOUT),
               style: TextStyle(color: context.theme.colorScheme.error),
             ),
             onTap: () {

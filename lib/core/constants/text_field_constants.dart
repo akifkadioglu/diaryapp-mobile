@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:mobile/core/localization/keys.dart';
+import 'package:mobile/core/localization/translate.dart';
 
 class TextFieldConstant {
-  static InputDecoration decoration({String? textKey}) => InputDecoration(
+  static InputDecoration decoration({IKey? textKey}) => InputDecoration(
         isDense: true,
-        hintText: textKey?.tr,
+        hintText: translate(textKey),
         filled: true,
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         border: OutlineInputBorder(

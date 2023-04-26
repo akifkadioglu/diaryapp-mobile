@@ -6,6 +6,7 @@ import 'package:mobile/core/component/app_button.dart';
 import 'package:mobile/core/constants/card_constants.dart';
 import 'package:mobile/core/constants/text_field_constants.dart';
 import 'package:mobile/core/localization/keys.dart';
+import 'package:mobile/core/localization/translate.dart';
 import 'package:mobile/core/routes/go_route.dart';
 import 'package:mobile/core/routes/route_names.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -33,7 +34,7 @@ class _HomeViewState extends BaseState<HomeView> {
       builder: (context) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(IKey.APP_NAME.tr),
+            title: Text(translate(IKey.APP_NAME)),
             elevation: 0,
             actions: [
               IconButton(

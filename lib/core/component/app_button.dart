@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mobile/core/localization/keys.dart';
+import 'package:mobile/core/localization/translate.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton({super.key, this.textKey, required this.func});
-  final String? textKey;
+  final IKey? textKey;
   final VoidCallback func;
   @override
   Widget build(BuildContext context) {
@@ -16,8 +18,8 @@ class AppButton extends StatelessWidget {
               func.call();
             },
             child: Text(
-              textKey?.tr ?? '',
-              style: TextStyle(
+              translate(textKey),
+              style: const TextStyle(
                 color: Colors.white,
               ),
             ),

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:mobile/core/base/state.dart';
+import 'package:mobile/core/component/expandable_text.dart';
 import 'package:mobile/core/localization/keys.dart';
+import 'package:mobile/core/localization/translate.dart';
 import 'package:mobile/core/models/diary_model.dart';
 import 'package:mobile/views/diary/service.dart';
 import 'package:mobile/views/diary/view_controller.dart';
@@ -28,7 +30,7 @@ class _DiariesViewState extends BaseState<DiariesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(IKey.APP_NAME.tr),
+        title: Text(translate(IKey.APP_NAME)),
         elevation: 0,
         actions: [
           Obx(
@@ -55,16 +57,19 @@ class _DiariesViewState extends BaseState<DiariesView> {
                         itemCount: diaries.length,
                         itemBuilder: (context, index) {
                           return Obx(
-                            () => ListTile(
-                              onLongPress: () {
-                                askAndDelete(context, diaries, index);
-                              },
-                              enabled: !(c.currIndex.value == index),
-                              title: Padding(
-                                padding: const EdgeInsets.only(top: 20.0),
-                                child: Text(diaries[index].header),
+                            () => Container(
+                              color: index % 2 == 0 ? themeData.hoverColor : null,
+                              child: ListTile(
+                                onLongPress: () {
+                                  askAndDelete(context, diaries, index);
+                                },
+                                enabled: !(c.currIndex.value == index),
+                                title: Padding(
+                                  padding: const EdgeInsets.only(top: 20.0),
+                                  child: Text(diaries[index].header),
+                                ),
+                                subtitle: dayContent(diaries, index),
                               ),
-                              subtitle: dayContent(diaries, index),
                             ),
                           );
                         },
@@ -93,16 +98,22 @@ class _DiariesViewState extends BaseState<DiariesView> {
               rateBar(diaries[index].rate),
             ],
           ),
-          Text(diaries[index].body),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(DateFormat('yyyy MMMM dd EEEE HH:mm', Get.locale?.languageCode).format(
-                DateTime.parse(
-                  diaries[index].createdAt.toString(),
-                ),
-              )),
-            ],
+          ExpandableText(
+            diaries[index].body,
+            trimLines: 2,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 30.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(DateFormat('yyyy MMMM dd EEEE HH:mm', Get.locale?.languageCode).format(
+                  DateTime.parse(
+                    diaries[index].createdAt.toString(),
+                  ),
+                )),
+              ],
+            ),
           ),
         ],
       ),
@@ -114,12 +125,16 @@ class _DiariesViewState extends BaseState<DiariesView> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(IKey.ARE_YOU_SURE.tr),
-          content: Text(IKey.ARE_YOU_SURE_LONG.tr),
+          title: Text(
+            translate(IKey.ARE_YOU_SURE),
+          ),
+          content: Text(
+            translate(IKey.ARE_YOU_SURE_LONG),
+          ),
           actions: <Widget>[
             TextButton(
               child: Text(
-                IKey.CANCEL.tr,
+                translate(IKey.CANCEL),
                 style: TextStyle(
                   color: context.theme.colorScheme.onSurface,
                 ),
@@ -129,7 +144,7 @@ class _DiariesViewState extends BaseState<DiariesView> {
               },
             ),
             TextButton(
-              child: Text(IKey.DELETE.tr,
+              child: Text(translate(IKey.DELETE),
                   style: TextStyle(
                     color: context.theme.colorScheme.onSurface,
                   )),
@@ -156,6 +171,7 @@ class _DiariesViewState extends BaseState<DiariesView> {
         glow: false,
         initialRating: rate,
         itemSize: 25.0,
+        ignoreGestures: true,
         allowHalfRating: true,
         unratedColor: Colors.amber.withAlpha(50),
         direction: Axis.horizontal,

@@ -5,6 +5,7 @@ import 'package:mobile/core/base/view.dart';
 import 'package:mobile/core/component/app_button.dart';
 import 'package:mobile/core/constants/text_field_constants.dart';
 import 'package:mobile/core/localization/keys.dart';
+import 'package:mobile/core/localization/translate.dart';
 import 'package:mobile/core/routes/go_route.dart';
 import 'package:mobile/core/routes/route_names.dart';
 import 'package:mobile/views/auth/login/service.dart';
@@ -27,7 +28,7 @@ class _LoginViewState extends BaseState<LoginView> {
         return Scaffold(
           appBar: AppBar(
             foregroundColor: context.theme.colorScheme.onSurface,
-            title: Text(IKey.LOGIN.tr),
+            title: Text(translate(IKey.LOGIN)),
             centerTitle: true,
             elevation: 0,
             backgroundColor: context.theme.canvasColor,
@@ -76,12 +77,12 @@ class _LoginViewState extends BaseState<LoginView> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 3),
-                              child: Text(IKey.DONT_HAVE_AN_ACCOUNT.tr),
+                              child: Text(translate(IKey.DONT_HAVE_AN_ACCOUNT)),
                             ),
                             GestureDetector(
                               child: Text(
-                                IKey.REGISTER.tr,
-                                style: TextStyle(fontSize: 17),
+                                translate(IKey.REGISTER),
+                                style: const TextStyle(fontSize: 17),
                               ),
                               onTap: () {
                                 RouteManager.normalRoute(RouteName.REGISTER);

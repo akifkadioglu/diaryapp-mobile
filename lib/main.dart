@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:mobile/core/localization/messages.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:mobile/core/localization/translate.dart';
 import 'package:mobile/core/routes/route_names.dart';
 import 'package:mobile/core/routes/routes.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      onGenerateTitle: (BuildContext context) => IKey.APP_NAME.tr,
+      onGenerateTitle: (BuildContext context) => translate(IKey.APP_NAME),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(colorScheme: lightColorScheme),
       darkTheme: ThemeData(colorScheme: darkColorScheme),

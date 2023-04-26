@@ -5,6 +5,7 @@ import 'package:mobile/core/base/view.dart';
 import 'package:mobile/core/component/app_button.dart';
 import 'package:mobile/core/constants/text_field_constants.dart';
 import 'package:mobile/core/localization/keys.dart';
+import 'package:mobile/core/localization/translate.dart';
 import 'package:mobile/views/auth/register/service.dart';
 import 'package:mobile/views/auth/register/view_controller.dart';
 
@@ -25,7 +26,7 @@ class _RegisterViewState extends BaseState<RegisterView> {
         return Scaffold(
           appBar: AppBar(
             foregroundColor: context.theme.colorScheme.onSurface,
-            title: Text(IKey.REGISTER.tr),
+            title: Text(translate(IKey.REGISTER)),
             centerTitle: true,
             elevation: 0,
             backgroundColor: context.theme.canvasColor,

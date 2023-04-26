@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:mobile/core/localization/keys.dart';
+import 'package:mobile/core/localization/translate.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -32,8 +33,8 @@ void share() async {
       [
         XFile(filePath),
       ],
-      text: IKey.SHARE_TEXT.tr,
-      subject: IKey.APP_NAME.tr,
+      text: translate(IKey.SHARE_TEXT),
+      subject: translate(IKey.APP_NAME),
     );
   }
 }
